@@ -1,5 +1,4 @@
-// import knex from "@infrastructure";
-import { hashPassword, knex } from "@infrastructure";
+import { hashPassword, knex } from "../infrastructure";
 
 export interface UserProp {
   id?: string;
@@ -7,14 +6,14 @@ export interface UserProp {
   last_name: string;
   email: string;
   password: string;
-  updated_at?: string;
-  created_at?: string;
+  updatedAt?: string;
+  createdAt?: string;
 }
 
+const TABLE_NAME: string = "users";
+const TIME_OUT: number = 1000;
+
 export class User {
-  public static NAME: string = "User";
-  public static TABLE_NAME: string = "users";
-  private static TIME_OUT: number = 1000;
   public prop: UserProp;
 
   private static beforeSave = (prop: Partial<UserProp>) => {
@@ -30,19 +29,18 @@ export class User {
     prop: Partial<UserProp>,
     selectableProps: string[]
   ) => {
-    const userWithHashPassword = await this.beforeSave(prop);
+    const userWithHashPassword = await User.beforeSave(prop);
 
     return knex
       .insert(userWithHashPassword)
       .returning<Partial<UserProp>>(selectableProps)
-      .into(this.TABLE_NAME)
-      .timeout(this.TIME_OUT);
+      .into(TABLE_NAME)
+      .timeout(TIME_OUT);
   };
 
   public static findByEmail = (email: string) =>
-    knex
-      .select()
-      .from<UserProp>(this.TABLE_NAME)
-      .where({ email })
-      .timeout(this.TIME_OUT);
+    knex.select().from<UserProp>(TABLE_NAME).where({ email }).timeout(TIME_OUT);
+
+  public static findById = (id: string) =>
+    knex.select().from<UserProp>(TABLE_NAME).where({ id }).timeout(TIME_OUT);
 }

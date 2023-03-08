@@ -17,20 +17,8 @@
     "experimentalDecorators": true,
     "typeRoots": ["./node_modules/@types", "./types"],
     "allowSyntheticDefaultImports": true,
-    "paths": {
-      "@controllers/*": ["./server/controllers/*"],
-      "@controllers": ["./server/controllers"],
-      "@helpers/*": ["./server/helpers/*"],
-      "@helpers": ["./server/helpers"],
-      "@middleware/*": ["./server/middleware/*"],
-      "@middleware": ["./server/middleware"],
-      "@infrastructure/*": ["./server/infrastructure/*"],
-      "@infrastructure": ["./server/infrastructure"],
-      "@models/*": ["./server/models/*"],
-      "@models": ["./server/models"],
-      "@service/*": ["./server/service/*"],
-      "@service": ["./server/service"]
-    }
+    "esModuleInterop": true
+    
   },
   "exclude": ["node_modules"]
 }

@@ -59,6 +59,7 @@ export const signInRules = checkSchema({
 export const refreshTokenRules = checkSchema({
   refreshToken: {
     in: "body",
-    isJWT: true,
+    isString: true,
+    isLength: { options: { max: 250 } },
   },
 });

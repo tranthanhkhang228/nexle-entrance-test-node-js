@@ -4,6 +4,8 @@ function getOptional(name: string): string | null {
 
 function getRequired(name: string): string {
   const val = getOptional(name);
+
+  // console.log("process.env", process.env);
   if (!val) {
     throw new Error(`${name} environment variable is required.`);
   }
@@ -21,8 +23,10 @@ export const LOG_LEVEL =
 export const PORT: number = +(getOptional("PORT") || 8000);
 
 // MySQL
-export const KNEX_CONNECTION_STRING = getRequired("TYPEORM_URL");
+export const KNEX_CONNECTION_STRING = getRequired("KNEX_CONNECTION_STRING");
 export const KNEX_LOGGING = getOptional("TYPEORM_LOGGING") || IS_DEVELOPMENT;
-export const DB_POOL_SIZE = getOptional("DB_POOL_SIZE") || 30;
+export const DB_POOL_SIZE = getOptional("DB_POOL_SIZE") || 10;
 
-export const JWT_SECRET = getRequired("JWT_SECRET");
+export const JWT_TOKEN_SECRET = getRequired("JWT_TOKEN_SECRET");
+export const JWT_TOKEN_LIFE = getRequired("JWT_TOKEN_LIFE");
+export const REFRESH_TOKEN_LIFE: number = +getRequired("REFRESH_TOKEN_LIFE");

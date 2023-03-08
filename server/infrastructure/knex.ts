@@ -18,4 +18,4 @@ const config: Config = {
   // },
 };
 
-export const knex = Knex(config);
+export const knex: Knex = require("knex")(config);

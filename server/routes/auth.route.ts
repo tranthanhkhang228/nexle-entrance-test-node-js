@@ -1,12 +1,23 @@
-import {} from "@controllers";
 import * as express from "express";
+import { refreshToken, signIn, signOut, signUp } from "../controllers";
+import {
+  refreshTokenRules,
+  signInRules,
+  signUpRules,
+} from "../controllers/auth/auth.chemaRule";
+import { extractJwt } from "../middleware/auth.middleware";
+import { validate } from "../middleware/validate.middleware";
 
-const router = express.Router();
+const authRouter = express.Router();
 
-const { postLogin, postRegister } = require("../controllers/auth_controller");
+authRouter.route("/sign-up").post(signUpRules, validate, signUp);
 
-router.route("/login").post(postLogin);
+authRouter.route("/sign-in").post(signInRules, validate, signIn);
 
-router.route("/register").post(postRegister);
+authRouter.route("/sign-out").post(extractJwt(), signOut);
 
-module.exports = router;
+authRouter
+  .route("/refresh-token")
+  .post(refreshTokenRules, validate, refreshToken);
+
+module.exports = authRouter;

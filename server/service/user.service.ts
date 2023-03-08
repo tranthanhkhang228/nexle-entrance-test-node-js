@@ -1,6 +1,6 @@
-import { User } from "@models";
 import { StatusCodes } from "http-status-codes";
 import { createError } from "../helpers";
+import { User, UserProp } from "../models";
 
 export interface CreateUserBody {
   firstName: string;
@@ -10,7 +10,7 @@ export interface CreateUserBody {
 }
 
 export const checkExistedEmail = async (email: string) => {
-  const foundUser = await User.findByEmail(email);
+  const [foundUser] = (await User.findByEmail(email)) as UserProp[];
 
   if (foundUser)
     throw createError({

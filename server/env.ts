@@ -1,5 +1,5 @@
 // only called once at entry point
-const result = require('dotenv').config();
+const result = require("dotenv").config();
 
 if (!result.error) {
   Object.keys(result.parsed).forEach((key) => {

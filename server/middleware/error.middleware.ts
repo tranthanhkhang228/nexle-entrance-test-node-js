@@ -1,7 +1,7 @@
-import { CustomError } from "@helpers";
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { IS_DEVELOPMENT } from "../config";
+import { CustomError } from "../helpers";
 
 const getDefaultErrorMessage = (errStatus: StatusCodes) => {
   switch (errStatus) {

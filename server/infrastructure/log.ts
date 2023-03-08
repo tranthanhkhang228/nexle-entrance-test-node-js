@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable ../server/typescript-eslint/no-explicit-any */
 import * as path from "path";
 import {
   createLogger,
