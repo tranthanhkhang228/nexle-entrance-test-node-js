@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+      "node_modules/": true,
+    },
+    "files.eol": "\n",
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "all",
+    "editor.formatOnSave": true,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "cSpell.words": []
+  }
+  
